@@ -94,6 +94,8 @@ $(function() {
         it('feed container has initially at least one entry', function(done) {
             let feed_container = $('.feed');
             expect(feed_container.children().length).toBeGreaterThan(0);
+            let feed_contents = $('.feed > .entry-link');
+            expect(feed_container.length).toBeGreaterThan(0);
             done();
         });
     });
