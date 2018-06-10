@@ -100,8 +100,8 @@ $(function() {
 
     /* TODO: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function() {
-        let original_feed_id = 2;
-        let new_feed_id = 3;
+        let original_feed_id = 3;
+        let new_feed_id = 2;
         let original_feed_contents = null;
         let new_feed_contents = null;
 
@@ -130,5 +130,22 @@ $(function() {
             expect(new_first_element.href).not.toEqual(original_first_element.href);
             done();
         });
+    });
+
+    /* Test calling loadFeed with illegal index arguments */
+    describe('Feed index error handling', function() {
+
+        it('feed index out of bounds', function() {
+            expect(function() { loadFeed(allFeeds.length); }).not.toThrow();
+        });
+
+        it('negative feed index', function() {
+            expect(function() { loadFeed(-1); }).not.toThrow();
+        });
+
+        it('undefined feed index', function() {
+            expect(function() { loadFeed(); }).not.toThrow();
+        });
+
     });
 }());
