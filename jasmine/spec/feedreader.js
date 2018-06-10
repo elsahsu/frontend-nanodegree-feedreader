@@ -86,13 +86,12 @@ $(function() {
          */
 
         beforeEach(function(done) {
-            // jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
             loadFeed(1, function() {
                 done();
             });
         });
 
-        it('feed container has at least one entry', function(done) {
+        it('feed container has initially at least one entry', function(done) {
             let feed_container = $('.feed');
             expect(feed_container.children().length).toBeGreaterThan(0);
             done();
@@ -100,9 +99,36 @@ $(function() {
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function() {
+        let original_feed_id = 2;
+        let new_feed_id = 3;
+        let original_feed_contents = null;
+        let new_feed_contents = null;
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+
+        beforeEach(function(done) {
+            loadFeed(original_feed_id, function() {
+                original_feed_contents = $('.feed').children();
+                loadFeed(new_feed_id, function() {
+                    new_feed_contents = $('.feed').children();
+                    done();
+                });
+            });
+        });
+
+        it('feed contents change when calling loadFeed with new index', function(done) {
+            expect(original_feed_contents.length).toBeGreaterThan(0);
+            expect(new_feed_contents.length).toBeGreaterThan(0);
+            let original_first_element = original_feed_contents[0];
+            let new_first_element = new_feed_contents[0];
+            expect(original_first_element).toBeDefined();
+            expect(new_first_element).toBeDefined();
+            expect(new_first_element.href).not.toEqual(original_first_element.href);
+            done();
+        });
+    });
 }());
