@@ -41,6 +41,14 @@ function init() {
  * which will be called after everything has run successfully.
  */
  function loadFeed(id, cb) {
+    if ((id === undefined) || (id < 0) || (id >= allFeeds.length)) {
+        console.log('Illegal feed ID:' + id);
+        if (cb) {
+            cb();
+        }
+        return;
+    }
+
      var feedUrl = allFeeds[id].url,
          feedName = allFeeds[id].name;
 
