@@ -69,9 +69,7 @@ $(function() {
     describe('Initial Entries', function() {
 
         beforeEach(function(done) {
-            loadFeed(1, function() {
-                done();
-            });
+            loadFeed(1, done);
         }, 20000); // Increase timeout a bit, fetching feeds takes time.
 
         /* Ensure that the there is at least a single .entry element
