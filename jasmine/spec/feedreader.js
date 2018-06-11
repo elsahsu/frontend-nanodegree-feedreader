@@ -72,7 +72,7 @@ $(function() {
             loadFeed(1, function() {
                 done();
             });
-        });
+        }, 20000); // Increase timeout a bit, fetching feeds takes time.
 
         /* Ensure that the there is at least a single .entry element
          * within the .feed container after loadFeed finishes.
@@ -107,7 +107,7 @@ $(function() {
                     done();
                 });
             });
-        });
+        }, 20000); // Increase timeout a bit, fetching feeds takes time.
 
         /* Ensure that when a new feed is loaded by the loadFeed
          * function that the content actually changes.
