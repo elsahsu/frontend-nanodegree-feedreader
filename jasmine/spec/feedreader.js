@@ -92,9 +92,10 @@ $(function() {
         let new_feed_contents = null;
 
         /* Call loadFeed twice: First with original feed id, wait
-         * for loadFeed to finish, then store contents to variable
-         * and call loadFeed with different index. Again wait for
-         * loadFeed to finish, then store contents to another
+         * for loadFeed to finish, then in the callback function
+         * store contents to variable and call loadFeed with
+         * different index. Again wait for loadFeed to finish,
+         * and in the callback function store contents to another
          * variable, then we are done.
          */
         beforeEach(function(done) {
