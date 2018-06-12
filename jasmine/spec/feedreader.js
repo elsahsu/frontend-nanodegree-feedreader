@@ -57,7 +57,6 @@ $(function() {
           */
         it('is shown when menu icon is clicked and hidden when clicked again', function() {
             let menuIcon = $('.menu-icon-link');
-            expect($('body').hasClass('menu-hidden')).toBe(true);
             menuIcon.click();
             expect($('body').hasClass('menu-hidden')).toBe(false);
             menuIcon.click();
@@ -70,17 +69,16 @@ $(function() {
 
         beforeEach(function(done) {
             loadFeed(1, done);
-        }, 20000); // Increase timeout a bit, fetching feeds takes time.
+        });
 
         /* Ensure that the there is at least a single .entry element
          * within the .feed container after loadFeed finishes.
          */
-        it('feed container has initially at least one entry', function(done) {
+        it('feed container has initially at least one entry', function() {
             let feed_container = $('.feed');
             expect(feed_container.children().length).toBeGreaterThan(0);
-            let feed_contents = $('.feed > .entry-link');
-            expect(feed_container.length).toBeGreaterThan(0);
-            done();
+            let feed_entries = $('.feed .entry');
+            expect(feed_entries.length).toBeGreaterThan(0);
         });
     });
 
@@ -106,7 +104,7 @@ $(function() {
                     done();
                 });
             });
-        }, 20000); // Increase timeout a bit, fetching feeds takes time.
+        });
 
         /* Ensure that when a new feed is loaded by the loadFeed
          * function that the content actually changes.
